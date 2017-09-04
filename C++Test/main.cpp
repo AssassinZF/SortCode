@@ -6,8 +6,14 @@
 //  Copyright © 2017年 lzf. All rights reserved.
 //
 
+/*
+ * 参考：
+ * https://www.61mon.com/index.php/archives/191/
+ */
+
 #include <iostream>
 #include "SortCode.hpp"
+#include "BinaryTree.cpp"
 
 using namespace std;
 
@@ -39,6 +45,9 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < count; i++)
         cout << array[i] << ",";
     cout << endl;
+    
+    Node *node = NULL;
+    node = createBinaryTree();
     return 0;
 }
 
