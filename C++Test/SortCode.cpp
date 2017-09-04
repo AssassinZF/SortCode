@@ -107,6 +107,7 @@ void HeapSort(ElemType arrs[], int count){
 
 }
 
+//调整堆
 void adjustHeap(int * arrs, int p, int len){
     int curParent = arrs[p];
     int child = 2* p + 1;   //左孩子
@@ -114,7 +115,7 @@ void adjustHeap(int * arrs, int p, int len){
         if(child+1<len&&arrs[child]<arrs[child+1]){
             child++;    //较大孩子的下标
         }
-        if(curParent<arrs[child]){
+        if(curParent<arrs[child]){//如果父节点值小于孩子节点
             arrs[p]=arrs[child];
             //没有将curParent赋值给孩子是因为还要迭代子树，
             //如果其孩子中有大的，会上移，curParent还要继续下移。
@@ -238,8 +239,85 @@ void countingSort(int array[],int count){
     }
 }
 
+#pragma mark - 归并排序
+void Merge(int arr[],int nLow,int nHigh)
+{
+    int nBegin1;
+    int nEnd1;
+    int nBegin2;
+    int nEnd2;
+    int *pTemp = NULL;
+    int i;
+    
+    nBegin1 = nLow;
+    nEnd1 = (nLow+nHigh)/2;
+    nBegin2 = nEnd1+1;
+    nEnd2 = nHigh;
+    
+    pTemp = (int *)malloc(sizeof(int ) *(nHigh-nLow+1));
+    
+    //合并
+    i = 0;
+    while(nBegin1 <=nEnd1 && nBegin2 <= nEnd2)
+    {
+        if(arr[nBegin1] < arr[nBegin2])
+        {
+            pTemp[i] = arr[nBegin1];
+            nBegin1++;
+        }
+        else
+        {
+            pTemp[i] = arr[nBegin2];
+            nBegin2++;
+        }
+        i++;
+    }
+    
+    //将有剩余的数组元素放入临时数组
+    while(nBegin1 <= nEnd1)
+    {
+        pTemp[i] = arr[nBegin1];
+        i++;
+        nBegin1++;
+    }
+    
+    while(nBegin2 <= nEnd2)
+    {
+        pTemp[i] = arr[nBegin2];
+        i++;
+        nBegin2++;
+    }
+    
+    //将临时数组元素放回原数组
+    for(i = 0;i < nHigh-nLow +1;i++ )
+    {
+        arr[i+nLow] = pTemp[i];
+    }
+    
+    //释放
+    free(pTemp);
+    pTemp = NULL;
+    
+}
 
-
+void MergeSort(int arr[],int nLow,int nHigh)
+{
+    int nMid;
+    if(arr == NULL )return;
+    
+    //两路归并
+    nMid = (nLow + nHigh)/2;
+    
+    if(nLow < nHigh)
+    {
+        //先拆分
+        MergeSort(arr,nLow,nMid);
+        MergeSort(arr,nMid+1,nHigh);
+        
+        //合并
+        Merge(arr,nLow,nHigh);
+    }
+}
 
 
 

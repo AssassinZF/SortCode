@@ -31,8 +31,9 @@ int main(int argc, const char * argv[]) {
 //    }
     
 //    HeapSort(array, count);
-    countingSort(array, count);
+//    countingSort(array, count);
 //    quicksort(array, 0, count - 1);
+    MergeSort(array, 0, count);
     
     //排序结果
     for (int i = 0; i < count; i++)

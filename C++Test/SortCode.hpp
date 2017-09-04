@@ -42,4 +42,9 @@ void quicksort(int a[],int left,int right);
  */
 void countingSort(int array[],int count);
 
+/*
+ * 归并排序
+ */
+void MergeSort(int arr[],int nLow,int nHigh);
+
 #endif /* SortCode_hpp */
