@@ -196,19 +196,47 @@ int maxNumber(int array[],int count){
 }
 
 void countingSort(int array[],int count){
-    if (count < 1) {
-        return;
+    int *pCount = NULL;
+    int i;
+    int j;
+    int nMin,nMax;
+    
+    if(array == NULL || count <=0)return;
+    
+    //找最大值和最小值
+    nMax = array[0];
+    nMin = array[0];
+    for(i = 1;i<count;i++)
+    {
+        if(array[i] > nMax)
+        {
+            nMax = array[i];
+        }
+        if(array[i] < nMin)
+        {
+            nMin = array[i];
+        }
     }
-    int arrayMax = maxNumber(array, count);
-    int *collectArray = NULL;
-    collectArray = (int *)malloc(sizeof(int ) * (arrayMax));
-    for (int i = 0; i < count; i ++) {
-        collectArray[array[i]]++;
+    //开辟计数数组
+    pCount = (int *)malloc(sizeof(int ) * (nMax-nMin+1));
+//    memset(pCount,0,sizeof(int ) * (nMax-nMin+1));
+    //计数
+    for(i = 0;i<count;i++)
+    {
+        pCount[array[i]-nMin]++;
+    }
+    //放回原数组
+    j = 0;
+    for(i = 0;i< nMax-nMin+1;i++)
+    {
+        while(pCount[i] != 0)
+        {
+            array[j] = i+nMin;
+            j++;
+            pCount[i]--;
+        }
     }
 }
-
-
-
 
 
 

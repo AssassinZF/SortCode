@@ -12,9 +12,16 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    
-    int array[] = {20,29,2,80,10,300,4,50,23,10};
+
+    //原数组
+    int array[] = {20,29,2,80,10,33,4,50,23,10};
     int count = sizeof(array)/sizeof(array[0]);
+    for (int i = 0; i < count; i++)
+        cout << array[i] << ",";
+    cout << "\n排序结果:" << endl;
+
+    //排序代码
+    
     //    bubbleSort(array, count);
     //    insertSort(array, count);
     //    selectSort(array, count);
@@ -24,10 +31,10 @@ int main(int argc, const char * argv[]) {
 //    }
     
 //    HeapSort(array, count);
-    for (int i = 0; i < count; i++)
-        cout << array[i] << ",";
-    cout << "\n排序结果:" << endl;
-    quicksort(array, 0, count - 1);
+    countingSort(array, count);
+//    quicksort(array, 0, count - 1);
+    
+    //排序结果
     for (int i = 0; i < count; i++)
         cout << array[i] << ",";
     cout << endl;

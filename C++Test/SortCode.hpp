@@ -37,4 +37,9 @@ void HeapSort(ElemType arrs[], int count);
  */
 void quicksort(int a[],int left,int right);
 
+/*
+ 计数排序
+ */
+void countingSort(int array[],int count);
+
 #endif /* SortCode_hpp */
