@@ -8,6 +8,8 @@
 
 #include "BinaryTree.hpp"
 #include <iostream>
+#include <queue>
+
 using namespace std;
 
 /* 创建二叉树 */
@@ -104,5 +106,56 @@ void lastOrderTraverse(Node* root)
         cout<<root->data<<' ';
     }
 }
+
+/* 层次遍历 */
+void LevelOrder(Node * node)
+{
+    Node * p = node;
+    queue<Node*> Q;  //队列
+    Q.push(p);
+    while (!Q.empty())
+    {
+        p = Q.front();
+        cout << p->data << " ";
+        Q.pop();
+        if (p->left)
+            Q.push(p->left);  //注意顺序，先进左孩子
+        if (p->right)
+            Q.push(p->right);
+    }
+}
+
+/* 求二叉树第 k 层的节点个数 */
+int GetKLevel(Node * node, int k)
+{
+    if (node == nullptr)
+        return 0;
+    if (k == 1)
+        return 1;
+    return GetKLevel(node->left, k - 1) + GetKLevel(node->right, k - 1);
+}
+
+/* 判断两棵二叉树是否结构相同 */
+bool StructureCmp(Node * node1, Node * node2)
+{
+    if (node1 == nullptr && node2 == nullptr)
+        return true;
+    else if (node1 == nullptr || node2 == nullptr)
+        return false;
+    return StructureCmp(node1->left, node2->left) && StructureCmp(node1->right, node2->right);
+}
+
+/* 求二叉树的镜像 */
+void Mirror(Node * node)
+{
+    if (node == nullptr)
+        return;
+    Node * temp = node->left;
+    node->left = node->right;
+    node->right = temp;
+    Mirror(node->left);
+    Mirror(node->right);
+}
+
 
 

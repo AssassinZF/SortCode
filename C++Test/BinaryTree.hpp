@@ -41,4 +41,15 @@ void inOrderTraverse(Node* root);
 /*后序遍历*/
 void lastOrderTraverse(Node* root);
 
+/* 层次遍历 */
+void LevelOrder(Node * node);
+
+/* 求二叉树第 k 层的节点个数 */
+int GetKLevel(Node * node, int k);
+
+
+/* 判断两棵二叉树是否结构相同 */
+bool StructureCmp(Node * node1, Node * node2);
+
+
 #endif /* BinaryTree_hpp */
