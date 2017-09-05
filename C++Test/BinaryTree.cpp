@@ -10,7 +10,6 @@
 #include <iostream>
 using namespace std;
 
-
 /* 创建二叉树 */
 
 Node* createBinaryTree()
@@ -32,6 +31,48 @@ Node* createBinaryTree()
     return p;
 }
 
+/*节点总个数*/
+int Nodenum(Node* root)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1+Nodenum(root->left)+Nodenum(root->right);
+        
+    }
+}
+
+/*二叉树的深度*/
+int DepthOfTree(Node* root)
+{
+    if(root != NULL)
+    {
+        return DepthOfTree(root->left)>DepthOfTree(root->right)?DepthOfTree(root->left)+1:DepthOfTree(root->right)+1;
+    }else{
+        return 0;
+    }
+}
+
+/*二叉树叶子节点数*/
+int Leafnum(Node* root)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    else if(  (root->left == NULL) && (root->right == NULL) )
+    {
+        return 1;
+    }
+    else
+    {
+        return  (Leafnum(root->left) + Leafnum(root->right)) ;
+    }
+}
+
 /* 前序遍历递归版 */
 void PreOrderRec(Node * node)
 {
@@ -41,3 +82,27 @@ void PreOrderRec(Node * node)
     PreOrderRec(node->left);     //然后输出左孩子
     PreOrderRec(node->right);    //最后输出右孩子
 }
+
+/*中序遍历*/
+void inOrderTraverse(Node* root)
+{
+    if( root )
+    {
+        inOrderTraverse(root->left);
+        cout<<root->data<<' ';
+        inOrderTraverse(root->right);
+    }
+}
+
+/*后序遍历*/
+void lastOrderTraverse(Node* root)
+{
+    if( root )
+    {
+        lastOrderTraverse(root->left);
+        lastOrderTraverse(root->right);
+        cout<<root->data<<' ';
+    }
+}
+
+
